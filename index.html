@@ -1,474 +1,415 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DevCom Review</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        :root {
-            --primary-color: #1b5e20;
-            --secondary-color: #2e7d32;
-            --white-bg: #ffffff;
-            --yellow-bg: #fffde7;
-            --default-bg: #e8f5e9;
-        }
 
-        body {
-            margin: 0;
-            font-family: "Merriweather", Georgia, serif;
-            background-color: var(--default-bg);
-            color: #222;
-            line-height: 1.6;
-        }
+<title>MATYAG PILIPINAS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-        }
+<style>
 
-        #logoPreview {
-            max-height: 60px;
-            border-radius: 5px;
-            border: 2px solid white;
-            margin-right: 10px;
-        }
+:root{
+--green:#1b5e20;
+--green2:#2e7d32;
+}
 
-        #siteTitle {
-            font-size: 28px;
-            font-weight: bold;
-        }
+body{
+margin:0;
+font-family: Georgia, serif;
+background:#e8f5e9;
+}
 
-        nav {
-            display: flex;
-            gap: 15px;
-        }
+/* HEADER */
 
-        nav button {
-            background:none;
-            border:none;
-            color:white;
-            font-size:16px;
-            font-weight:bold;
-            cursor:pointer;
-        }
+header{
+background:var(--green);
+color:white;
+padding:10px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:relative;
+}
 
-        nav button:hover {
-            text-decoration: underline;
-        }
+#siteTitle{
+font-size:26px;
+font-weight:bold;
+}
 
-        .menu-icon {
-            font-size: 26px;
-            cursor: pointer;
-            user-select: none;
-        }
+/* NAVIGATION */
 
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background: var(--secondary-color);
-            padding: 10px;
-            border-radius: 5px;
-            z-index: 100;
-            flex-direction: column;
-        }
+nav{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
 
-        .dropdown-menu button {
-            background:none;
-            border:none;
-            color:white;
-            padding:8px 12px;
-            text-align:left;
-            cursor:pointer;
-            font-weight:bold;
-        }
+nav button{
+background:none;
+border:none;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
 
-        .dropdown-menu button:hover {
-            background: var(--primary-color);
-        }
+nav button:hover{
+text-decoration:underline;
+}
 
-        .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 20px;
-            background: var(--white-bg);
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+/* HAMBURGER */
 
-        .hidden { display: none; }
+.hamburger{
+font-size:26px;
+cursor:pointer;
+}
 
-        /* HOME PAGE */
-        #home {
-            text-align: center;
-        }
+/* DROPDOWN */
 
-        #home img#homeLogo {
-            max-width: 300px;
-            border-radius: 15px;
-            border: 5px solid var(--primary-color);
-            margin-bottom: 20px;
-        }
+.dropdown{
+display:none;
+position:absolute;
+top:60px;
+right:20px;
+background:var(--green2);
+padding:10px;
+border-radius:6px;
+flex-direction:column;
+min-width:180px;
+}
 
-        #home h1 {
-            color: var(--primary-color);
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
+.dropdown button{
+background:none;
+border:none;
+color:white;
+text-align:left;
+padding:8px;
+cursor:pointer;
+font-weight:bold;
+}
 
-        #home p {
-            font-size: 18px;
-            color: var(--secondary-color);
-            margin-bottom: 30px;
-        }
+.dropdown button:hover{
+background:var(--green);
+}
 
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+/* PAGE */
 
-        .article-card-home {
-            display: flex;
-            flex-direction: column;
-            background: #f1f8f1;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+background:white;
+}
 
-        .article-card-home:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
+.hero{
+text-align:center;
+margin-bottom:30px;
+}
 
-        .article-card-home img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
+.hero h1{
+color:var(--green);
+font-size:40px;
+}
 
-        .article-card-home .article-info {
-            padding: 10px 15px;
-            text-align: left;
-        }
+.hero p{
+color:var(--green2);
+}
 
-        .article-card-home .article-info h3 {
-            margin: 0 0 5px 0;
-            font-size: 20px;
-            color: var(--primary-color);
-        }
+/* ARTICLES */
 
-        .article-card-home .article-info .article-meta {
-            font-size: 12px;
-            color: gray;
-        }
+.articles-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
 
-        /* ARTICLES PAGE */
-        .article-card {
-            margin-bottom: 30px;
-        }
+.article-card{
+background:#f1f8f1;
+border-radius:8px;
+overflow:hidden;
+cursor:pointer;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
 
-        .article-card h3 {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
+.article-card img{
+width:100%;
+height:150px;
+object-fit:cover;
+}
 
-        .article-card .article-meta {
-            font-size: 13px;
-            color: gray;
-            margin-bottom: 10px;
-        }
+.article-info{
+padding:10px;
+}
 
-        .article-card img {
-            max-width: 100%;
-            margin: 10px 0;
-            border-radius: 8px;
-        }
+.article-info h3{
+margin:0;
+color:var(--green);
+}
 
-        .article-card .article-content {
-            text-align: justify;
-            font-size: 16px;
-        }
+.meta{
+font-size:12px;
+color:gray;
+}
 
-        #fullArticle {
-            margin-top: 20px;
-            text-align: left;
-        }
+#fullArticle{
+display:none;
+}
 
-        #fullArticle img {
-            max-width: 100%;
-            margin: 10px 0;
-            border-radius: 8px;
-        }
+#about{
+display:none;
+}
 
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
+/* FOOTER */
 
-        button.primary-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
+footer{
+background:var(--green);
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
 
-        button.primary-btn:hover {
-            background-color: var(--secondary-color);
-        }
+</style>
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: var(--primary-color);
-            color: white;
-            margin-top: 30px;
-        }
-
-    </style>
 </head>
+
 <body>
 
 <header>
-    <div style="display:flex; align-items:center; gap:10px;">
-        <img id="logoPreview" src="">
-        <div id="siteTitle">DevCom Review</div>
-    </div>
-    <nav>
-        <button onclick="showSection('home')">Home</button>
-        <button onclick="showSection('articles')">Articles</button>
-    </nav>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <div class="dropdown-menu" id="dropdownMenu">
-        <button onclick="toggleModeMenu()">Mode</button>
-        <div id="modeOptions" style="display:none; flex-direction:column; margin-left:10px;">
-            <button onclick="changeBackground('white')">White</button>
-            <button onclick="changeBackground('yellow')">Yellow</button>
-            <button onclick="changeBackground('default')">Green</button>
-        </div>
-        <button onclick="showSection('post')">Post</button>
-        <button onclick="showSection('manage')">Manage</button>
-        <button onclick="alert('Login feature can be added later')">Login</button>
-    </div>
+
+<div id="siteTitle">MATYAG PILIPINAS</div>
+
+<nav>
+
+<button onclick="filterCategory('All')">Homepage</button>
+<button onclick="filterCategory('Headlines')">Headlines</button>
+<button onclick="filterCategory('Opinion')">Opinion</button>
+<button onclick="filterCategory('Nation')">Nation</button>
+<button onclick="filterCategory('World')">World</button>
+<button onclick="filterCategory('Sports')">Sports</button>
+<button onclick="filterCategory('Entertainment')">Entertainment</button>
+<button onclick="filterCategory('Lifestyle')">Lifestyle</button>
+<button onclick="filterCategory('Food and Leisure')">Food and Leisure</button>
+<button onclick="filterCategory('Education')">Education</button>
+<button onclick="filterCategory('Agriculture')">Agriculture</button>
+<button onclick="filterCategory('Technology')">Technology</button>
+<button onclick="filterCategory('Science and Environment')">Science and Environment</button>
+
+</nav>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+<div class="dropdown" id="menu">
+
+<button onclick="showAbout()">About Us</button>
+
+<hr>
+
+<b style="color:white;padding:5px;">MODE</b>
+
+<button onclick="changeMode('white')">White</button>
+<button onclick="changeMode('yellow')">Yellow</button>
+<button onclick="changeMode('green')">Green</button>
+
+</div>
+
 </header>
 
 <div class="container">
 
-    <!-- HOME -->
-    <div id="home">
-        <img id="homeLogo" src="" alt="DevCom Review Logo">
-        <h1>DevCom Review</h1>
-        <p>Stories and updates from the world of Development Communication.</p>
-        <div id="homeArticlesContainer" class="articles-grid"></div>
-    </div>
+<div id="home">
 
-    <!-- ARTICLES -->
-    <div id="articles" class="hidden">
-        <h2>All Articles</h2>
-        <input type="text" id="searchInput" placeholder="Search articles..." onkeyup="searchArticles()" style="width:100%; padding:8px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc;">
-        <div id="articlesContainer"></div>
-    </div>
+<div class="hero">
 
-    <!-- FULL ARTICLE VIEW -->
-    <div id="fullArticle" class="hidden"></div>
+<img src="images/logo.png" style="width:200px;margin-bottom:20px;">
 
-    <!-- POST PAGE -->
-    <div id="post" class="hidden">
-        <h2>Post / Edit Article</h2>
-        <input type="hidden" id="editIndex">
-        <input type="text" id="title" placeholder="Article Title">
-        <input type="text" id="author" placeholder="Author Name">
-        <input type="date" id="date">
-        <textarea id="content" rows="6" placeholder="Write your article here..."></textarea>
-        <label>Add Image:</label>
-        <input type="file" id="imageUpload" accept="image/*">
-        <button class="primary-btn" onclick="publishArticle()">Save Article</button>
-    </div>
-
-    <!-- MANAGE PAGE -->
-    <div id="manage" class="hidden">
-        <h2>Manage</h2>
-        <div style="margin-bottom:15px;">
-            <h3>Change Website Name</h3>
-            <input type="text" id="newSiteTitle" placeholder="Enter New Website Name">
-            <button class="primary-btn" onclick="changeSiteTitle()">Save</button>
-        </div>
-        <div>
-            <h3>Change Logo</h3>
-            <input type="file" accept="image/*" onchange="uploadLogo(event)">
-        </div>
-    </div>
+<h1>MATYAG PILIPINAS</h1>
+<p>Bantay ng Katotohanan. Tinig ng Bayan.</p>
 
 </div>
 
-<footer>© 2026 DevCom Review</footer>
+<h1>MATYAG PILIPINAS</h1>
+
+<p>Bantay ng Katotohanan. Tinig ng Bayan.</p>
+
+</div>
+
+<div id="articlesContainer" class="articles-grid"></div>
+
+</div>
+
+<div id="fullArticle"></div>
+
+<div id="about">
+
+<h2>About MATYAG PILIPINAS</h2>
+
+<p><b>Mission:</b> To deliver truthful and responsible journalism.</p>
+
+<p><b>Vision:</b> To become a trusted digital news platform.</p>
+
+<p><b>Importance:</b> Journalism promotes transparency and public awareness.</p>
+
+<button onclick="goHome()">Back to Home</button>
+
+</div>
+
+</div>
+
+<footer>
+
+Support MATYAG PILIPINAS  
+<br><br>
+
+Facebook | Twitter | Instagram | YouTube  
+<br><br>
+
+Privacy Policy | Member Agreement | Copyright Notice
+
+</footer>
 
 <script>
+
+/* MENU */
+
 function toggleMenu(){
-    const menu=document.getElementById("dropdownMenu");
-    menu.style.display = menu.style.display==="flex"?"none":"flex";
-    menu.style.flexDirection="column";
+
+const menu=document.getElementById("menu")
+
+menu.style.display=menu.style.display==="flex"?"none":"flex"
+
+menu.style.flexDirection="column"
+
 }
 
-function toggleModeMenu(){
-    const modes=document.getElementById("modeOptions");
-    modes.style.display = modes.style.display==="flex"?"none":"flex";
+/* COLOR MODES */
+
+function changeMode(mode){
+
+if(mode==="white") document.body.style.background="#ffffff"
+
+if(mode==="yellow") document.body.style.background="#fffde7"
+
+if(mode==="green") document.body.style.background="#e8f5e9"
+
 }
 
-function changeBackground(mode){
-    if(mode==='white') document.body.style.backgroundColor='#ffffff';
-    else if(mode==='yellow') document.body.style.backgroundColor='#fffde7';
-    else document.body.style.backgroundColor='#e8f5e9';
+/* ABOUT */
+
+function showAbout(){
+
+document.getElementById("home").style.display="none"
+document.getElementById("fullArticle").style.display="none"
+document.getElementById("about").style.display="block"
+
 }
 
-function showSection(section){
-    ['home','articles','post','manage','fullArticle'].forEach(id=>document.getElementById(id).classList.add("hidden"));
-    document.getElementById(section).classList.remove("hidden");
-    displayArticles();
-    displayHomeArticles();
+function goHome(){
+
+document.getElementById("home").style.display="block"
+document.getElementById("about").style.display="none"
+document.getElementById("fullArticle").style.display="none"
+
 }
 
-// PUBLISH ARTICLE
-function publishArticle(){
-    const title=document.getElementById("title").value;
-    const author=document.getElementById("author").value;
-    const date=document.getElementById("date").value;
-    const content=document.getElementById("content").value;
-    const imageFile=document.getElementById("imageUpload").files[0];
+/* ARTICLES */
 
-    if(!title||!author||!content||!date){ alert("Fill all fields"); return; }
+const articles=[
 
-    const reader=new FileReader();
-    reader.onload=function(){
-        let articles=JSON.parse(localStorage.getItem("articles")) || [];
-        const article={title,author,date,content,image:imageFile? reader.result:""};
-        articles.unshift(article);
-        localStorage.setItem("articles",JSON.stringify(articles));
-        clearForm();
-        displayArticles();
-        displayHomeArticles();
-        showSection('home');
-    }
-    if(imageFile) reader.readAsDataURL(imageFile);
-    else reader.onload();
+{
+title:"Education Reform in the Philippines",
+author:"Editorial Team",
+date:"03/09/2026",
+category:"Education",
+image:"https://picsum.photos/500",
+content:"Education reforms aim to improve learning outcomes and accessibility."
+},
+
+{
+title:"Agriculture Development Programs Expand",
+author:"Reporter Juan",
+date:"03/09/2026",
+category:"Agriculture",
+image:"https://picsum.photos/501",
+content:"Agriculture initiatives continue to expand nationwide."
 }
 
-function displayHomeArticles(){
-    const articles = JSON.parse(localStorage.getItem("articles")) || [];
-    const container = document.getElementById("homeArticlesContainer");
-    container.innerHTML = "";
+]
 
-    articles.forEach((a,index) => {
-        const div = document.createElement("div");
-        div.className = "article-card-home";
+function displayArticles(list){
 
-        const imgHTML = a.image ? `<img src="${a.image}">` 
-                                 : `<div style="width:100%;height:150px;background:#c8e6c9;"></div>`;
+const container=document.getElementById("articlesContainer")
 
-        div.innerHTML = `
-            ${imgHTML}
-            <div class="article-info">
-                <h3>${a.title}</h3>
-                <div class="article-meta">${a.date}</div>
-            </div>
-        `;
-        div.onclick = () => showFullArticle(index);
-        container.appendChild(div);
-    });
+container.innerHTML=""
+
+list.forEach((a,i)=>{
+
+container.innerHTML+=`
+
+<div class="article-card" onclick="openArticle(${i})">
+
+<img src="${a.image}">
+
+<div class="article-info">
+
+<h3>${a.title}</h3>
+
+<div class="meta">
+
+${a.author} | ${a.date} | ${a.category}
+
+</div>
+
+</div>
+
+</div>
+
+`
+
+})
+
 }
 
-function displayArticles(){
-    const articles = JSON.parse(localStorage.getItem("articles")) || [];
-    const container = document.getElementById("articlesContainer");
-    container.innerHTML = "";
-    articles.forEach(a=>{
-        const div = document.createElement("div");
-        div.className = "article-card";
-        div.innerHTML = `<h3>${a.title}</h3>
-            <div class="article-meta">${a.author} | ${a.date}</div>
-            ${a.image? `<img src="${a.image}">`:""}
-            <div class="article-content">${a.content}</div>`;
-        container.appendChild(div);
-    });
+function openArticle(i){
+
+const a=articles[i]
+
+const div=document.getElementById("fullArticle")
+
+div.innerHTML=`
+
+<h2>${a.title}</h2>
+
+<p>${a.author} | ${a.date} | ${a.category}</p>
+
+<img src="${a.image}">
+
+<p>${a.content}</p>
+
+<button onclick="goHome()">Back</button>
+
+`
+
+document.getElementById("home").style.display="none"
+
+document.getElementById("fullArticle").style.display="block"
+
 }
 
-function searchArticles(){
-    const filter = document.getElementById("searchInput").value.toLowerCase();
-    const articles = JSON.parse(localStorage.getItem("articles")) || [];
-    const container = document.getElementById("articlesContainer");
-    container.innerHTML = "";
+function filterCategory(cat){
 
-    articles.forEach(a => {
-        if(a.title.toLowerCase().includes(filter) || a.author.toLowerCase().includes(filter)){
-            const div = document.createElement("div");
-            div.className = "article-card";
-            div.innerHTML = `<h3>${a.title}</h3>
-                <div class="article-meta">${a.author} | ${a.date}</div>
-                ${a.image ? `<img src="${a.image}">` : ""}
-                <div class="article-content">${a.content}</div>`;
-            container.appendChild(div);
-        }
-    });
+if(cat==="All") displayArticles(articles)
+
+else{
+
+const filtered=articles.filter(a=>a.category===cat)
+
+displayArticles(filtered)
+
 }
 
-function showFullArticle(index){
-    const articles = JSON.parse(localStorage.getItem("articles")) || [];
-    const article = articles[index];
-    if(!article) return;
-    const div = document.getElementById("fullArticle");
-    div.innerHTML = `
-        <h2>${article.title}</h2>
-        <div class="article-meta">${article.author} | ${article.date}</div>
-        ${article.image ? `<img src="${article.image}">` : ""}
-        <p>${article.content}</p>
-        <button class="primary-btn" onclick="showSection('home')">Back to Home</button>
-    `;
-    div.classList.remove("hidden");
-    document.getElementById("home").classList.add("hidden");
 }
 
-function clearForm(){
-    ['title','author','date','content','imageUpload'].forEach(id=>document.getElementById(id).value="");
-}
+displayArticles(articles)
 
-function changeSiteTitle(){
-    const newTitle=document.getElementById("newSiteTitle").value.trim();
-    if(newTitle){
-        document.getElementById("siteTitle").innerText=newTitle;
-        document.querySelector("#home h1").innerText=newTitle;
-        document.title=newTitle;
-    }
-}
-
-function uploadLogo(event){
-    const reader=new FileReader();
-    reader.onload=function(){
-        document.getElementById("logoPreview").src=reader.result;
-        document.getElementById("homeLogo").src=reader.result;
-    }
-    reader.readAsDataURL(event.target.files[0]);
-}
-
-window.onload=function(){
-    displayArticles();
-    displayHomeArticles();
-    showSection('home');
-}
 </script>
 
 </body>
